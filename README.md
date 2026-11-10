@@ -18,7 +18,7 @@ v4.5 기준 Node.js 자동 테스트 **160개 통과, 실패 0개**입니다. Ve
 - **프런트엔드 배포**: GitHub `main` 브랜치 연동, HTML·CSS·JavaScript 정적 사이트
 - **온라인 대전 서버**: Cloudflare Workers 및 Durable Objects (프런트엔드와 별도 운영)
 - **배포 후 확인**: PC·모바일 화면 정상 작동, AI 대전 시작, 온라인 서버 연결, 서로 다른 기기에서 실제 온라인 대전 및 동기화 확인 (2026-11-10)
-- **GitHub 저장소 공개 범위**: Private (라이선스 적용과 저장소 공개 여부는 별개)
+- **GitHub 저장소 공개 범위**: Public (MIT License 적용, 공개 여부는 GitHub 설정에서 관리)
 
 ## 게임 규칙 요약
 
