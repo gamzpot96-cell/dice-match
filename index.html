@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#a87545">
+  <meta name="description" content="밝은 원목 주사위로 즐기는 주사위 전략 게임 Dice Match">
+  <title>Dice Match | Wooden Dice Strategy</title>
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/home.css">
+  <script defer src="js/home.js"></script>
+</head>
+<body>
+  <div class="tabletop">
+    <header class="topbar">
+      <a class="brand" href="./index.html" aria-label="Dice Match 홈"><span class="brand-symbol" aria-hidden="true">⚄</span> DICE MATCH</a>
+      <button class="settings-trigger" id="settingsButton" type="button" aria-haspopup="dialog">설정</button>
+    </header>
+
+    <main class="main-shell">
+      <section class="hero" aria-labelledby="game-title">
+        <div class="dice-pair" aria-hidden="true">
+          <div class="wood-die wood-die--blue"><span class="pips pips-five"><i></i><i></i><i></i><i></i><i></i></span></div>
+          <div class="wood-die wood-die--red"><span class="pips pips-four"><i></i><i></i><i></i><i></i></span></div>
+        </div>
+        <p class="eyebrow">WOODEN DICE STRATEGY</p>
+        <h1 id="game-title">DICE MATCH</h1>
+        <p class="subtitle">한 번의 주사위, 달라지는 승부.</p>
+      </section>
+
+      <section class="mode-panel" aria-labelledby="mode-heading">
+        <h2 id="mode-heading">대전 방식 선택</h2>
+        <div class="mode-list">
+          <button class="mode-button" type="button" data-mode="ai">
+            <span class="mode-icon" aria-hidden="true">♟</span><span class="mode-copy"><strong>AI 대전</strong><small>컴퓨터와 전략 대결</small></span><span class="mode-arrow" aria-hidden="true">›</span>
+          </button>
+          <button class="mode-button" type="button" data-mode="local">
+            <span class="mode-icon" aria-hidden="true">♙♟</span><span class="mode-copy"><strong>2인 로컬 대전</strong><small>한 기기에서 번갈아 플레이</small></span><span class="mode-arrow" aria-hidden="true">›</span>
+          </button>
+          <button class="mode-button" type="button" data-mode="online">
+            <span class="mode-icon" aria-hidden="true">◎</span><span class="mode-copy"><strong>온라인 대전</strong><small>친구와 초대 코드로 대결</small></span><span class="mode-arrow" aria-hidden="true">›</span>
+          </button>
+        </div>
+        <button class="rules-open-button" id="openRulesButton" type="button" aria-haspopup="dialog" aria-controls="rulesDialog">게임 규칙 보기</button>
+        <dialog id="rulesDialog" class="rules-dialog" aria-labelledby="rulesDialogTitle">
+          <div class="rules-dialog-inner">
+            <div class="rules-dialog-header">
+              <h2 id="rulesDialogTitle">게임 규칙</h2>
+              <button class="rules-close-button" id="closeRulesButton" type="button" aria-label="게임 규칙 닫기">닫기</button>
+            </div>
+            <div class="rules-content">
+            <p><strong>기본 진행</strong> · 1대1 대전. 양쪽에 3개 라인이 있으며, 라인마다 주사위를 최대 3개 놓습니다. 선공은 무작위로 정하고, 선공자의 첫 턴에는 자신의 필드에 실드만 배치합니다.</p>
+            <p><strong>점수</strong> · 숫자 n 하나는 n점, 같은 숫자 2개는 3n점, 3개는 5n점입니다. 예: 4가 1개면 4점, 2개면 12점, 3개면 20점입니다.</p>
+            <p><strong>공격</strong> · 일반 주사위를 자신의 라인에 놓아 같은 라인의 상대 일반 주사위와 숫자가 같으면 자동 공격합니다. 상대의 같은 숫자 일반 주사위와 공격 주사위는 제거됩니다. 실드는 공격으로 제거되지 않습니다.</p>
+            <p><strong>보상 실드</strong> · 공격 성공 시 무작위 실드 1개를 얻어 자기 필드 또는 상대 필드의 빈칸에 놓습니다. 상대 필드에 놓으면 상대 점수로 계산됩니다. 실드 배치는 공격하지 않습니다.</p>
+            <p><strong>주사위 돌리기</strong> · 각자 경기당 1회, 기존 숫자와 다른 숫자를 뽑고 두 숫자 중 하나를 선택합니다. 일반 주사위와 선공자 시작 실드에만 사용하며 보상 실드는 제외됩니다.</p>
+            <p><strong>경기 종료</strong> · 현재 턴 처리가 끝나고 양쪽 필드가 모두 차면 종료합니다. 승리 라인 수 → 총점 → 가장 높은 한 라인 점수 순으로 승패를 판단하며, 모두 같으면 무승부입니다. 자신의 필드가 가득 차면 일반 턴은 건너뜁니다.</p>
+            </div>
+          </div>
+        </dialog>
+        <p class="phase-note">온라인 대전 기능은 개발 중입니다. 서버 배포 전에는 인터넷을 통한 대전이 불가능합니다.</p>
+      </section>
+    </main>
+    <footer class="footer">DICE MATCH · PRIVATE TABLETOP PROJECT</footer>
+  </div>
+
+  <dialog id="infoDialog" class="info-dialog" aria-labelledby="dialogTitle">
+    <div class="dialog-inner">
+      <h2 id="dialogTitle">안내</h2>
+      <p id="dialogText"></p>
+      <button id="closeDialog" type="button">확인</button>
+    </div>
+  </dialog>
+</body>
+</html>

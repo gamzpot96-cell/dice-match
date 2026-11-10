@@ -1,0 +1,9 @@
+{
+  "name": "dice-match",
+  "version": "0.4.1",
+  "private": true,
+  "description": "Private wooden dice strategy game",
+  "scripts": {
+    "test": "node --test tests/*.test.js"
+  }
+}

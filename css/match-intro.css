@@ -1,0 +1,13 @@
+/* v3.4 — 화면의 크기를 유지하는 간단한 대전 시작 안내 */
+#matchContent[hidden],#matchIntro[hidden] {display:none!important}
+.match-intro{width:min(100% - 32px,660px);margin:clamp(28px,9vh,105px) auto 48px;padding:clamp(24px,4vw,40px);border-radius:22px;border:2px solid #d5b28a;background:linear-gradient(145deg,#fff8ea,#f4dfc1);box-shadow:0 14px 30px #44281155;color:#45321f;text-align:center}
+.match-intro-kicker{font-size:11px;letter-spacing:.13em;font-weight:800;color:#9b6c40;margin:0 0 12px}
+.match-intro h1{font-size:clamp(24px,4vw,34px);margin:0 0 14px}
+.match-intro p:not(.match-intro-kicker){line-height:1.65;margin:8px 0}
+.match-intro-detail{font-size:13px;color:#796047}
+.match-intro-actions{display:flex;gap:10px;justify-content:center;margin-top:26px}
+.match-intro-actions a,.match-intro-actions button{min-width:135px;padding:12px 18px;border-radius:10px;text-decoration:none;font:inherit;font-weight:750}
+.match-intro-back{background:#fffaf1;border:1px solid #caa984;color:#644a32}
+.match-intro-start{background:#8b5d38;border:1px solid #795032;color:#fff8e8;box-shadow:0 3px 0 #654328}
+.match-intro-start:active{transform:translateY(2px);box-shadow:0 1px 0 #654328}
+@media(max-width:460px){.match-intro-actions{flex-direction:column}.match-intro-actions a,.match-intro-actions button{width:100%}}

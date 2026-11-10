@@ -1,0 +1,27 @@
+﻿# Node.js
+node_modules/
+npm-debug.log*
+
+# Cloudflare Wrangler 로컬 데이터
+.wrangler/
+.dev.vars
+.dev.vars.*
+
+# 환경변수 및 인증 정보
+.env
+.env.*
+!.env.example
+
+# Vercel 로컬 설정
+.vercel/
+
+# Windows 임시 파일
+Thumbs.db
+Desktop.ini
+
+# VS Code 개인 설정
+.vscode/
+
+# 테스트 및 임시 파일
+coverage/
+*.log

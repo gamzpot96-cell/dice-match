@@ -1,0 +1,46 @@
+.lobby{width:min(100% - 32px,850px);margin:28px auto 50px;color:#4a3321}
+.lobby>header{text-align:center;color:#fff5e5;text-shadow:0 2px 4px #38211355}
+.lobby h1{font-size:clamp(26px,4vw,39px);margin:7px 0}.lobby>header p{line-height:1.6}
+.eyebrow{font-size:11px;letter-spacing:.2em;font-weight:800}.notice{background:#fff4df;border:2px solid #ba8653;border-radius:15px;padding:15px 18px;margin:26px 0 18px}
+.notice p,.lobby-card p,.lobby-footnote{font-size:13px;line-height:1.6}.notice p{margin:6px 0 0}
+.lobby-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.lobby-card{background:#fff8ec;border:2px solid #dfbd90;border-radius:19px;padding:24px;display:flex;flex-direction:column;gap:11px;box-shadow:0 10px 20px #41231344}
+.lobby-card h2{margin:0;font-size:21px}.lobby-card p{margin:0 0 8px;color:#78573a}.lobby-card label{font-weight:750;font-size:13px}
+.lobby-card input{font:inherit;padding:12px;border:1px solid #ba9769;border-radius:9px;color:#4a3321;background:#fffdf7;letter-spacing:.12em;text-transform:uppercase}
+.lobby-card button{margin-top:auto;padding:13px;border:0;border-radius:10px;background:#d8c6ae;color:#6c5843;font-weight:800;cursor:not-allowed}
+.lobby-footnote{text-align:center;color:#fff4e3}
+.mode-tag{color:#624324;background:#fff2dc;padding:9px 15px;border-radius:20px;font-weight:800;font-size:12px}
+@media(max-width:650px){.lobby-grid{grid-template-columns:1fr}.lobby-card{padding:18px}}
+/* STEP 6-2: room occupancy without shifting the existing page while waiting. */
+.lobby-card button:not(:disabled){background:#90623e;color:#fffaf0;cursor:pointer;box-shadow:0 3px 0 #65452d}
+.waiting-room{margin-top:18px;min-height:220px}
+.active-code{font-size:25px;letter-spacing:.13em;color:#75451f}
+.waiting-note{border-top:1px solid #e1c5a1;padding-top:10px}
+[hidden]{display:none!important}
+.recovery-entry{margin-top:18px;gap:9px}
+.recovery-entry button:disabled{background:#d8c6ae;color:#6c5843;box-shadow:none;cursor:not-allowed}
+.recovery-secret{display:grid;gap:7px;padding:12px;border:1px solid #d7b38b;border-radius:10px;background:#f9eedc}
+.recovery-secret span{font-size:12px;font-weight:700}.recovery-secret strong{font-size:18px;letter-spacing:.13em;overflow-wrap:anywhere;color:#744321}
+.recovery-secret small{font-size:11px;line-height:1.5;color:#805d41}
+.recovery-secret button{margin:0}
+
+.online-start{display:inline-block;background:#7b583c;color:white;border-radius:10px;padding:11px 20px;text-decoration:none;font-weight:700;margin:10px}.online-start[hidden]{display:none}
+
+/* v4.0: fixed-size ready/leave actions and non-modal countdown. */
+.waiting-actions{display:grid;grid-template-columns:1fr;gap:12px;width:100%}
+.waiting-room .waiting-actions button{box-sizing:border-box;min-height:54px;width:100%;margin:0;padding:13px 18px;text-align:center;font:inherit;font-weight:800;border-radius:10px}
+.waiting-room .online-start{display:block;text-decoration:none;color:#fffaf0;background:#90623e}
+.waiting-room .online-start:disabled{background:#d8c6ae;color:#6c5843;box-shadow:none;cursor:not-allowed}
+.code-actions{display:flex;gap:10px;flex-wrap:wrap}
+.waiting-room .code-actions #copyCode{flex:1}
+.waiting-room .code-actions #rotateCode{flex:0 0 auto;font-size:13px}
+.countdown-overlay{position:fixed;inset:0;z-index:40;display:flex;align-items:center;justify-content:center;background:rgba(37,23,13,.7);color:#fff4dc;pointer-events:none}
+.countdown-overlay strong{font-size:clamp(72px,16vw,180px);font-weight:800;text-shadow:0 8px 24px #28160b}
+
+/* v4.3: optional recovery details follow the ready/leave buttons, not precede them. */
+.waiting-room .recovery-details{margin-top:4px;border-top:1px solid #e1c5a1;padding-top:9px}
+.recovery-details summary{cursor:pointer;list-style:revert;font-size:12px;font-weight:700;color:#78573a}
+.recovery-details summary span{font-weight:400;color:#9a7958;margin-left:6px}
+.recovery-details .recovery-secret{margin-top:10px;gap:5px;padding:10px}
+.recovery-details .recovery-secret strong{font-size:14px;letter-spacing:.08em}
+.recovery-details .recovery-secret button{padding:8px 12px;font-size:12px;align-self:start;width:auto}

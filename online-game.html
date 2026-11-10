@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#a87545">
+  <title>온라인 대전 | Dice Match</title>
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/game.css">
+  <script defer src="js/engine/game.js"></script>
+  <script defer src="js/ai.js"></script>
+  <script defer src="js/board-layout.js"></script>
+  <script defer src="js/sound.js"></script>
+  <script defer src="js/online-config.js"></script>
+  <script defer src="js/online-game.js"></script>
+</head>
+<body>
+  <div class="tabletop game-tabletop">
+    <header class="topbar">
+      <a class="brand" href="./index.html"><span class="brand-symbol" aria-hidden="true">⚄</span> DICE MATCH</a>
+      <div class="sound-tools">
+        <button class="sound-toggle" id="soundToggle" type="button" aria-expanded="false" aria-controls="soundMenu" aria-label="효과음 설정">♪ 효과음</button>
+        <div class="sound-menu" id="soundMenu" hidden>
+          <label class="sound-check"><input type="checkbox" id="soundEnabled"> 효과음 켜기</label>
+          <label for="soundVolume">효과음 볼륨 <output id="soundVolumeValue">55%</output></label>
+          <input type="range" id="soundVolume" min="0" max="100" step="5" value="55">
+        </div>
+      </div>
+      <span class="mode-label">온라인 대전</span>
+    </header>
+    <main class="game-shell"><p id="networkStatus" role="status" style="text-align:center;min-height:1.5em;margin:4px 0 8px;color:#664b35">게임 서버에 연결 중입니다.</p>
+      <details class="rejoin-key-panel" style="text-align:center;font-size:12px;margin-bottom:6px;color:#65472f"><summary style="cursor:pointer">내 복귀 코드 보기</summary><div>방 <strong id="gameRecoveryRoom"></strong> · 복귀 코드 <strong id="gameRecoveryKey"></strong> <button type="button" id="copyGameRecoveryKey">코드 복사</button></div><small>시크릿 창을 닫기 전에 코드를 보관하세요. 다른 사람과 공유하지 마세요.</small></details>
+      <section class="game-head" aria-label="플레이어 현황">
+        <div class="player-card" id="player0"><div><span class="player-label">플레이어 1</span><small>파란 눈금</small></div><div class="player-side-info"><strong id="total0">0점</strong><span id="turn0" class="turn-indicator" hidden>내 차례</span><span id="first0" class="first-indicator" hidden>선공</span></div></div>
+        <div class="versus">VS</div>
+        <div class="player-card" id="player1"><div><span class="player-label">플레이어 2</span><small>빨간 눈금</small></div><div class="player-side-info"><strong id="total1">0점</strong><span id="turn1" class="turn-indicator" hidden>내 차례</span><span id="first1" class="first-indicator" hidden>선공</span></div></div>
+      </section>
+      <section class="board-frame" aria-label="3라인 주사위 게임판">
+        <div class="board-title"><h1>WOODEN BOARD</h1><span id="phaseText" aria-live="polite">게임 준비 중</span></div>
+        <div class="board-guide"><span>플레이어 1</span><span>플레이어 2</span></div>
+        <div class="board-stage">
+          <aside class="board-side side-blue" aria-label="플레이어 1 주사위와 돌리기">
+            <div id="pending0" class="side-pending" aria-label="플레이어 1 준비된 주사위" aria-live="polite"></div>
+            <button id="rerollButton" class="side-reroll" type="button">주사위 돌리기 (1회)</button>
+          </aside>
+          <div id="gameBoard" class="board-lines"></div>
+          <aside class="board-side side-red" aria-label="플레이어 2 주사위와 돌리기">
+            <div id="pending1" class="side-pending" aria-label="플레이어 2 준비된 주사위" aria-live="polite"></div>
+            <button id="rerollButton1" class="side-reroll" type="button">주사위 돌리기 (1회)</button>
+          </aside>
+        </div>
+        <div class="legend"><span><i class="legend-dot blue"></i>파랑 눈금</span><span><i class="legend-dot red"></i>빨강 눈금</span><span>같은 숫자는 묶음 표시 · 실드는 눈금 색 테두리</span></div>
+        <section id="disconnectOverlay" class="disconnect-overlay" hidden aria-live="polite" aria-label="연결 끊김 안내">
+          <div class="disconnect-card"><h2>경기 일시 정지</h2>
+            <p id="disconnectMessage">상대방의 재접속을 기다리고 있습니다.</p>
+            <strong id="disconnectRemaining">01:00</strong>
+            <p>60초 안에 재접속하지 않으면 경기가 종료됩니다.</p>
+          </div>
+        </section>
+        <section id="resultPanel" class="result-panel result-overlay" hidden aria-live="polite" aria-labelledby="resultHeading">
+          <div class="result-overlay-card">
+            <h2 id="resultHeading">게임 종료</h2>
+            <p id="resultSummary"></p>
+            <div id="resultLines"></div>
+            <button id="playAgainButton" class="primary-button" type="button">로비로 나가기</button>
+          </div>
+        </section>
+      </section>
+      <div class="lobby-bottom-actions"><button id="lobbyButton" class="lobby-exit-button" type="button">로비로 나가기</button></div>
+</main>
+    <footer class="footer">DICE MATCH · SFX · ONLINE MATCH</footer>
+  </div>
+  <dialog id="restartDialog" class="confirm-dialog" aria-labelledby="restartTitle"><div class="confirm-body"><h2 id="restartTitle">로비로 나가시겠습니까?</h2><p>진행 중인 경기를 떠나고 메인 로비로 돌아갑니다.</p><div class="button-row"><button type="button" id="cancelRestart" class="light-button">취소</button><button type="button" id="confirmRestart" class="primary-button">로비로 나가기</button></div></div></dialog>
+</body>
+</html>

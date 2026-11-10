@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>온라인 대전 대기실 | Dice Match</title>
+  <link rel="stylesheet" href="css/theme.css"><link rel="stylesheet" href="css/online.css"><link rel="stylesheet" href="css/match-intro.css">
+  <script defer src="js/online-config.js"></script><script defer src="js/online-protocol.js"></script><script defer src="js/online-lobby.js"></script>
+</head>
+<body><div class="tabletop">
+  <header class="topbar"><a class="brand" href="./index.html">⚄ DICE MATCH</a><span class="mode-tag">온라인 대전</span></header>
+    <section id="matchIntro" class="match-intro" aria-labelledby="matchIntroTitle">
+    <p class="match-intro-kicker">DICE MATCH · MATCH INTRO</p>
+    <h1 id="matchIntroTitle">온라인 대전</h1>
+    <p>친구와 초대 코드로 연결해 대전합니다.</p>
+    <p class="match-intro-detail">시작하기를 누른 뒤 방을 만들거나 6자리 코드로 참여하세요. 서버 연결이 필요합니다.</p>
+    <div class="match-intro-actions"><a href="./index.html" class="match-intro-back">로비로 돌아가기</a><button id="startMatchButton" class="match-intro-start" type="button">시작하기</button></div>
+  </section>
+  <main class="lobby" id="matchContent" hidden>
+    <header><p class="eyebrow">PRIVATE MATCH</p><h1>친구와 온라인 대전</h1><p>방을 만들고 6자리 초대 코드로 친구를 초대하세요.</p></header>
+    <div class="notice" role="status"><strong id="serverStatus">서버 연결 확인 중</strong><p id="serverHint">방 생성과 입장은 서버 연결 후 가능합니다.</p></div>
+    <div class="lobby-grid" id="entryGrid">
+      <section class="lobby-card"><h2>방 만들기</h2><p>내가 방을 만든 뒤 친구의 입장을 기다립니다.</p><button id="createRoom" type="button" disabled>방 생성</button></section>
+      <section class="lobby-card"><h2>방 참여하기</h2><label for="roomCode">6자리 초대 코드</label><input id="roomCode" maxlength="6" autocomplete="off" spellcheck="false" placeholder="예: ABC234" aria-describedby="roomHint"><p id="roomHint" aria-live="polite">영문 대문자와 숫자 6자리 (I, O, 0, 1 제외)</p><button id="joinRoom" type="button" disabled>방 입장</button></section>
+    </div>
+    <section id="recoveryEntry" class="lobby-card recovery-entry" aria-labelledby="recoveryTitle">
+      <h2 id="recoveryTitle">진행 중인 경기로 돌아가기</h2>
+      <p>경기 중 연결이 끊겼다면 <strong>초대 코드와 나만의 복귀 코드</strong>를 입력하세요. 초대 코드만으로는 기존 자리에 들어갈 수 없습니다.</p>
+      <label for="recoveryRoomCode">6자리 초대 코드</label><input id="recoveryRoomCode" maxlength="6" autocomplete="off" spellcheck="false" placeholder="예: ABC234">
+      <label for="recoveryKey">16자리 나의 복귀 코드</label><input id="recoveryKey" maxlength="16" autocomplete="off" spellcheck="false" placeholder="대기실에서 받은 코드" aria-describedby="recoveryHint">
+      <p id="recoveryHint">복귀 코드는 다른 플레이어에게 알려주지 마세요.</p><button type="button" id="recoverMatch" disabled>기존 경기 복귀</button>
+    </section>
+    <section id="waitingRoom" class="lobby-card waiting-room" hidden aria-live="polite">
+      <h2>대기실</h2><p>초대 코드: <strong id="activeCode" class="active-code"></strong></p>
+      <div class="code-actions"><button type="button" id="copyCode">코드 복사</button><button type="button" id="rotateCode" hidden>새 코드 발급</button></div>
+
+      <p id="seatLabel"></p><p id="presenceLabel">상대방 접속 상태를 확인하고 있습니다.</p>
+      <p class="waiting-note">상대방이 접속하면 온라인 게임 화면으로 이동할 수 있습니다.</p>
+      <div class="waiting-actions"><button type="button" id="startOnlineGame" class="online-start" disabled>경기 준비</button><button type="button" id="leaveRoom">대기실 나가기</button></div>
+      <details class="recovery-details">
+        <summary>복귀 코드 확인 <span>필요할 때만 열기</span></summary>
+        <div class="recovery-secret"><span>내 복귀 코드</span><strong id="activeRecoveryKey"></strong><button type="button" id="copyRecoveryKey">복귀 코드 복사</button><small>같은 일반 브라우저에서는 자동 복귀를 시도합니다. 시크릿 창을 모두 종료하면 저장 정보가 삭제되므로 이 코드가 필요합니다. 다른 사람에게 공유하지 마세요.</small></div>
+      </details>
+    </section>
+    <div id="countdownOverlay" class="countdown-overlay" hidden aria-live="assertive"><strong id="countdownText">3</strong></div>
+    <p class="lobby-footnote">공개 채팅·사용자 계정 없이 초대 코드로 연결합니다. 초대 코드를 공개 게시하지 마세요.</p>
+  </main>
+</div></body></html>
